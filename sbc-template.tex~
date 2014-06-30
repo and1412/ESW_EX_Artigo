@@ -37,32 +37,45 @@ Este artigo descreve as principais técnicas de segurança que podem ser aplicadas
 
 %Parágrafo 01: Visão geral do uso de smartphones
 
-Nos últimos anos, a sociedade tem presenciado o rápido aumento na utilização de \textit{smartphones} em seu cotidiano. A evolução dos \textit{smartphones} é constante, sempre oferecendo melhorias no desempenho, redes de acesso e integração com os usuário por meio de sensores \cite{suarez2014}. Atualmente existem diversas opções de sistemas operacionais para \textit{smartphones}, entre os principais destacam-se o Android OS\footnote{Site oficial do Android OS: $http://www.android.com/$} e o IOS\footnote{Site Oficial do IOS: $https://www.apple.com/br/ios/$}. No terceiro quadrimestre de 2013 o IDC\footnote{Corporação de Dados Internacional $http://www.idc.com/$} mostrou que dispositivos com Android OS representam aproximadamente 80\% das vendas globais de \textit{smartphones}, enquanto que os com IOS representam aproximadamente 13\%.  
+Nos últimos anos, a sociedade tem presenciado o rápido aumento na utilização de \textit{smartphones} em seu cotidiano. A evolução dos \textit{smartphones} é constante, sempre oferecendo melhorias no desempenho, redes de acesso e integração com os usuário por meio de sensores \cite{suarez2014}. Atualmente existem diversas opções de sistemas operacionais para \textit{smartphones}, entre os principais destacam-se o Android OS\footnote{Site oficial do Android OS: $http://www.android.com/$} e o IOS\footnote{Site Oficial do IOS: $https://www.apple.com/br/ios/$}. Segundo o IDC\footnote{Corporação de Dados Internacional}, dispositivos com Android OS exercem quase 80\% das vendas de \textit{smartphones} globais, enquanto que os com IOS exercem aproximadamente 13\%.  
+
 
 %Parágrafo 02: Mapear o aumento do uso de smartphones com o Android e logo depois com segurança já enfatizando algumas lacunas
 
-Os \textit{smartphones} proporcionam recursos ao usuário que superam uma simples ligação ou o envio de mensagens. Atividades frequentes como acesso a internet, comunicação com redes sociais e interação com conteúdos multimídia são oferecidas de forma intuitiva e prática pelos \textit{smartphones}. Com a popularidade dos \textit{smartphones} em ascensão, ataques maliciosos visando obter informações pertinentes ao usuário ou depreciar o dispositivo ocorrem com frequência \cite{banuri2012}. O Android OS é mais sensível a este tipo de ataque devido a fatores como domínio do mercado e distribuição de aplicativos através de repositórios não oficiais.    
-
 %Parágrafo 03: Apresentar o propósito do trabalho e a metodologia que será utilizada
-Neste contexto, o objetivo deste trabalho é identificar as vulnerabilidades presentes em aplicações Android que possam afetar a segurança das informações do usuário. As perguntas formuladas são: Quais são as principais vulnerabilidades presentes em aplicações Android? Quais as técnicas de seguranças utilizadas para mitigar as vulnerabilidades encontradas? O problema considerado é: como o tema é novo, diversas vulnerabilidades estão sendo exploradas, técnicas para evitá-las não acompanham essa curva de crescimento. Para alcançar estes objetivos será utilizada a técnica de revisão sistemática. O processo da revisão consiste das seguintes fases: planejamento da revisão (desenvolvimento do protocolo de revisão e sua validação), execução da revisão (identificação de estudos relevantes, seleção de estudos, avaliação da qualidade, extração e sintetização de informações) e avaliação dos resultados obtidos.
 
 %Parágrafo 04: Resultados e justificativas do valor do mesmo.
 
-A aplicação da revisão sistemática servirá como insumo para a criação de um catálogo contendo as principais vulnerabilidades de segurança nas aplicações Android bem como possíveis formas de mitigá-las. Este catálogo servirá de apoio para o desenvolvimento de aplicações baseadas na plataforma Android.
-
 %Parágrafo 05: Estrutura do Trabalho
 
-Este trabalho está dividido em seções. Apresenta-se na Seção 2 uma contextualização sobre segurança na plataforma Android. Já na Seção 3, o processo de revisão sistemática utilizado é descrito. A Seção 4 consiste em apresentar aspectos relacionados ao planejamento realizado para a revisão sistemática. Logo a seguir, a Seção 5 apresenta aspectos relacionados com a condução da revisão sistemática. Na Seção 6, os resultados obtidos com a revisão são analisados. Para finalizar, na Seção 7 são apresentados as considerações finais e trabalhos futuros.  
+O objetivo é identificar as vulnerabilidades presentes em aplicações Android que possam afetar a segurança de informações. As perguntas formuladas são: Quais são as principais vulnerabilides presentes em aplicações Android? Quais as técnicas de seguranças utilizadas para mitigar as vulnerabilidades encontradas? O problema considerado é: como o tema é novo, diversas vulnerabilidades estão sendo exploradas, técnicas para evitá-las não acompanham essa curva de crescimento. A aplicação da revisão sistemática servirá como insumo para a criação de um catálogo com as principais falhas e boas práticas de segurança. Este catálogo servirá de apoio para o desenvolvimento de aplicações Android.
 
-\section{Segurança no Android OS} 
-\label{seg_and}
+A técnica utilizada será a revisão sistemática. O processo da revisão será através das fases de planejamento da revisão (desenvolvimento do protocolo de revisão e sua validação), execução da revisão (identificação de estudos relevantes, seleção de estudos, avaliação da qualidade, extração e sintetização de informações) e documentação da revisão (escrever o relatório e validá-lo).
 
-%O que é o Android, relacionar com o linux%
+As fontes de pesquisa selecionadas foram às bibliotecas digitais IEEEXPLORE, SCOPUS e ACM. As linguagens escolhidas foram o inglês e o português. Foram considerados apenas artigos decorrentes de proceedings e revistas relevantes para a execução da revisão sistemática.
 
-%Qual é a estrutura interna do sistema operacional android? %
+Para a definição da string de busca as seguintes palavras chaves foram utilizadas android, security, software, application, vulnerability, leak, app, malware e virus.
 
-%Aspectos de Segurança do Android%
+Para realizar a seleção dos resultados, alguns critérios de inclusão e exclusão foram estabelecidos. Os trabalhos encontrados devem possuir, no mínimo, pontuação B4 no QUALIS da CAPES ou pertencer às conferências ou revistas relevantes; Os trabalhos devem estar disponíveis sem custos de aquisição para alunos da Universidade de Brasília; Os trabalhos devem estar em português ou inglês; Os trabalhos devem possuir conteúdo relacionado ao sistema operacional Android.
 
+Apresenta-se na figura 01 a string de busca definida com base nas palavras chaves. A string foi utilizada nas fontes de informações previamente selecionadas. Como a engine de busca de cada fonte pode ser diferente, pequenas mudanças na string podem ser necessárias. Porém, a semântica da string deve ser mantida.
+
+\section{First Page} \label{sec:firstpage}
+
+The first page must display the paper title, the name and address of the
+authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are
+required only for papers written in Portuguese). The title must be centered
+over the whole page, in 16 point boldface font and with 12 points of space
+before itself. Author names must be centered in 12 point font, bold, all of
+them disposed in the same line, separated by commas and with 12 points of
+space after the title. Addresses must be centered in 12 point font, also with
+12 points of space after the authors' names. E-mail addresses should be
+written using font Courier New, 10 point nominal size, with 6 points of space
+before and 6 points of space after.
+
+The abstract and ``resumo'' (if is the case) must be in 12 point Times font,
+indented 0.8cm on both sides. The word \textbf{Abstract} and \textbf{Resumo},
+should be written in boldface and must precede the text.
 
 \section{CD-ROMs and Printed Proceedings}
 
@@ -145,6 +158,6 @@ before each reference. The first line of each reference should not be
 indented, while the subsequent should be indented by 0.5 cm.
 
 \bibliographystyle{sbc}
-\bibliography{sbc-template}
+\bibliography{reference}
 
 \end{document}
