@@ -3,7 +3,7 @@
 \usepackage{sbc-template}
 
 \usepackage{graphicx,url}
-
+\usepackage{longtable}
 %\usepackage[brazil]{babel}   
 \usepackage[latin1]{inputenc}  
 
@@ -24,32 +24,28 @@
 
 \maketitle
 
-\begin{abstract}
-This article describes the main security techniques that can be applied on the development of new functionalities that can ensure the security of the data persisted in mobile devices that utilize the operational system Android. These techniques may be related to the system itself, as well as mobile applications
-\end{abstract}
-     
 \begin{resumo} 
-Este artigo descreve as principais técnicas de segurança que podem ser aplicadas para o desenvolvimento de funcionalidades que protejam as informações presentes em dispositivos móveis com o sistema operacional Android. Essas técnicas podem estar relacionadas ao próprio sistema, como também a aplicações móveis.
+Atualmente o uso de \textit{smartphones} está crescendo em uma taxa exponencial. As pessoas estão utilizando \textit{smartphones} para executar tarefas rotineiras como interação social e acesso a internet. Com isto, várias informações particulares do usuário ficam disponíveis na memória do aparelho. Vários \textit{malwares} foram desenvolvidos para acessar estas informações e/ou avariar o hardware do \textit{smartphone}. Neste contexto, o objetivo deste trabalho é identificar as principais vulnerabilidades utilizadas pelos \textit{malwares}. Além disso, este artigo descreve as principais técnicas de segurança que podem ser aplicadas para o desenvolvimento de funcionalidades que protejam as informações presentes em dispositivos móveis. Para isto, uma revisão sistemática acerca das vulnerabilidades do Android OS bem como das técnicas para evitá-las foi realizada.
 \end{resumo}
 
+\begin{abstract}
+Nowadays the use of smartphones is growing at an exponential rate. People are using smartphones to perform routine tasks like social interaction and access to internet. With this, several private user information are available in the device memory. Several malware were developed to access this information and/or hardware malfunctions smartphone. In this context, the aim of this work is to identify the main vulnerabilities used by malware. Additionally, this article describes the key security techniques that can be applied to the development of features that protect the information present on mobile devices. For this, a systematic review of the vulnerabilities of the Android OS as well as techniques to avoid them was performed.
+\end{abstract}
 
 \section{Introdução}
 
 %Parágrafo 01: Visão geral do uso de smartphones
 
 Nos últimos anos, a sociedade tem presenciado o rápido aumento na utilização de \textit{smartphones} em seu cotidiano. A evolução dos \textit{smartphones} é constante, sempre oferecendo melhorias no desempenho, redes de acesso e integração com os usuário por meio de sensores \cite{suarez2014}. Atualmente existem diversas opções de sistemas operacionais para \textit{smartphones}, entre os principais destacam-se o Android OS\footnote{Site oficial do Android OS: $http://www.android.com/$} e o IOS\footnote{Site Oficial do IOS: $https://www.apple.com/br/ios/$}. No terceiro quadrimestre de 2013 o IDC\footnote{Corporação de Dados Internacional $http://www.idc.com/$} mostrou que dispositivos com Android OS representam aproximadamente 80\% das vendas globais de \textit{smartphones}, enquanto que os com IOS representam aproximadamente 13\%.  
-
 %Parágrafo 02: Mapear o aumento do uso de smartphones com o Android e logo depois com segurança já enfatizando algumas lacunas
 
 Os \textit{smartphones} proporcionam recursos ao usuário que superam uma simples ligação ou o envio de mensagens. Atividades frequentes como acesso a internet, comunicação com redes sociais e interação com conteúdos multimídia são oferecidas de forma intuitiva e prática pelos \textit{smartphones}. Com a popularidade dos \textit{smartphones} em ascensão, ataques maliciosos visando obter informações pertinentes ao usuário ou depreciar o dispositivo ocorrem com frequência \cite{banuri2012}. O Android OS é mais sensível a este tipo de ataque devido a fatores como domínio do mercado e distribuição de aplicativos através de repositórios não oficiais.    
 
 %Parágrafo 03: Apresentar o propósito do trabalho e a metodologia que será utilizada
 Neste contexto, o objetivo deste trabalho é identificar as vulnerabilidades presentes em aplicações Android que possam afetar a segurança das informações do usuário. As perguntas formuladas são: Quais são as principais vulnerabilidades presentes em aplicações Android? Quais as técnicas de seguranças utilizadas para mitigar as vulnerabilidades encontradas? O problema considerado é: como o tema é novo, diversas vulnerabilidades estão sendo exploradas, técnicas para evitá-las não acompanham essa curva de crescimento. Para alcançar estes objetivos será utilizada a técnica de revisão sistemática. O processo da revisão consiste das seguintes fases: planejamento da revisão (desenvolvimento do protocolo de revisão e sua validação), execução da revisão (identificação de estudos relevantes, seleção de estudos, avaliação da qualidade, extração e sintetização de informações) e avaliação dos resultados obtidos.
-
 %Parágrafo 04: Resultados e justificativas do valor do mesmo.
 
 A aplicação da revisão sistemática servirá como insumo para a criação de um catálogo contendo as principais vulnerabilidades de segurança nas aplicações Android bem como possíveis formas de mitigá-las. Este catálogo servirá de apoio para o desenvolvimento de aplicações baseadas na plataforma Android.
-
 %Parágrafo 05: Estrutura do Trabalho
 
 Este trabalho está dividido em seções. Apresenta-se na Seção 2 uma contextualização sobre segurança na plataforma Android. Já na Seção 3, o processo de revisão sistemática utilizado é descrito. A Seção 4 consiste em apresentar aspectos relacionados ao planejamento realizado para a revisão sistemática. Logo a seguir, a Seção 5 apresenta aspectos relacionados com a condução da revisão sistemática. Na Seção 6, os resultados obtidos com a revisão são analisados. Para finalizar, na Seção 7 são apresentados as considerações finais e trabalhos futuros.  
@@ -57,102 +53,152 @@ Este trabalho está dividido em seções. Apresenta-se na Seção 2 uma contextualiza
 \section{Segurança no Android OS} 
 \label{seg_and}
 
-Android é um sistema operacional open-source amplamente difundido para dispositivos móveis que provê um sistema operacional base, uma camada de aplicações, um conjunto de ferramentas de desenvolvimento Java e um conjunto de aplicações para o sistema\citep{?}(Enck, Ongtang e McDaniel, P. D., 2009). As aplicações desenvolvidas por terceiros são condicionadas as restrições da API fornecida pelo sistema. Essas aplicações são executadas na camada superior que é executada em Java. Tais aplicações possuem resumidamente 4 tipos de compomentes: Activity, Service, Content provider e Broadcast Receiver. 
+Android é um sistema operacional open-source amplamente difundido para dispositivos móveis que provê um sistema operacional base, uma camada de aplicações, um conjunto de ferramentas de desenvolvimento Java e um conjunto de aplicações para o sistema\cite{enc2009}. As aplicações desenvolvidas por terceiros são condicionadas as restrições da API fornecida pelo sistema. Essas aplicações são executadas na camada superior que é executada em Java. Tais aplicações possuem resumidamente 4 tipos de compomentes: Activity, Service, Content provider e Broadcast Receiver.
+ 
+\graphicspath{{figuras/}}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{bootreceiver.jpg}
+\caption{Exemplo de aplicação Android.} Extraído de \cite{enc2009}
+\label{aplicacao}
+\end{figure}
+
 O sistema protege as aplicações e informações através da combinação de dois principais mecanismos, a isolação das aplicações na camada de sistema e uma mediação da comunicação entre componentes na camada do meio. Essas medidas restringem a exploração de vulnerabilidades apenas nas aplicações que possuem falhas, restringindo a propagação para o resto do sistema. Outra característica de segurança oriunda dessas medidas é o controle de acesso aos componentes de aplicações. Esse controle é feito através da definição de labels feita pelo desenvolvedor da aplicação. O gerenciamento dessas labels é feita pelo monitor de controle de comunicação presente na camada do do sistema. Essa restrição de acesso e controle de labels fornece segurança de acesso para os dados presentes nas aplicações.
-A busca por melhorias na segurança no sistema causou diversas refinamentos no sistema. Tais refinamentos ocorreram e ocorrem a cada nova versão do Android. Alguns desses refinamentos gerados até a versão v1.0r1 do System Development Kit, SDK: Compomentes públicos e privados, Componentes implicitamente abertos, Provedor de conteúdo de informações, Ganchos do sistema, API's protegidas, Leveis de controle de permissão, Intenções pendentes, Permissões de URI e Permissões de intenção em broadcast\citep{?}(Enck, Ongtang e McDaniel, P. D., 2009). As definições de segurança de uma aplicação são em grande parte feitas pelo desenvolvedor da aplicação através das definições de acesso das labels. É necessário que se tenha conhecimento da maneira correta de se utilizar os refinamentos feitos no sistema, caso contrário, vulnerabilidades se tornaram presentes.
-%O que é o Android, relacionar com o linux%
-
-\section{Vulnerabilidades}
-As principais falhas de segurança encontradas em aplicações Android estão relacionadas as permissões de uso de serviços do dispositivo \citep{?}(Chandramohan e Tan, 2012). As permissões são claramente informadas para o usuário durante a fase de instalação, mas comumente elas passam despercebidas. Em alguns casos aplicação pode  possuir serviços de componentes não autorizados o usuário, a detecção dessa tentativa pode ser feito através do Kirin, uma aplicação Android para ceritificação de permissões \citep{?}(Enck, Ongtang e McDaniel, P., 2009).
-Outra vulnerabilidade decorrente da desatenção no processo de instalação e liberação de diversas permissões para o aplicativo é o ataque ?Repacking?. Nesse tipo de ataque o aplicativo original é modifado e nele são adicionados serviços que farão com que informações do usuário sejam extraidas \citep{?}(Zhou e Jiang, 2012). Após essa modificação o aplicativo alterado é disponibilizado em lojas e baixados por usuários desatentos. Esse tipo de ataque 
-Diferente do ?Repacking? o ataque ?Update attack? não é um malware no primeiro momento, ele é apenas uma aplicação normal, sem possuir características que possam ser definidas como ofensivas ao usuário\citep{?}(Zhou e Jiang, 2012). No entanto esse ataque faz com que após a atualização do aplicativo, podendo ser visível ou não para o usuário, ele se torne um malware com um conjunto de serviços que extraiam informações.
-Já o ataque ?Drive-by Download? não vai possuir nenhuma característica de malware em momento algum do seu ciclo de vida. Ele irá redirecionar o usuário para uma página maliciosa, possivelmente uma falsa loja de aplicativos, que oferecerá soluções para algum tipo de problema analisado pelo aplicativo anterior, caso o usuário instale essa nova aplicação o sistema se tornará vulnerável a extração de dados\citep{?} (Zhou e Jiang, 2012).
-Uma das vulnerabilidades encontradas pode explorar a extração de informações pessoais do usuário através da utilização da câmera e microfone. Esse tipo de ataque tem como objetivo a obtenção de informações privadas do usuário. Através da utilização da câmera e microfone o atacante pode obter informações sem que o usuário perceba qualquer rastro de invasão ao seus dispositivo. Alguns tipos de ataque baseados  em video utilizam como brecha para coletar dados o período em que o usuário digita textos, possivelmente senhas, no teclado. Essa análise pode ser feita através da captura da movimentação dos olhos\citep{?} (Wu, Du e Fu, 2014). Tal tipo de ataque ocorre quando um usuário instala um aplicativo que parece ser inofensivo, mas em um momento de desatenção durante a instalação ele não percebe que uma requisição de uso de câmera e, ou microfone. Após essa instalação o aplicativo rodará um service em background que ira capturar fotos e gravar áudios sem que seja notado.
-Outra maneira para se obter esse tipo de informação é através da captura da tela do usuário durante a digitação de textos. O malware pode ser configurado para que se inicie no momento em que um texto é digitado, isso sem que o usuário receba qualquer notificação \citep{?}(Maggi, Volpato, Gasparini, Zanero, Borrachi, 2011).
-%Qual é a estrutura interna do sistema operacional android? %
-
-%Aspectos de Segurança do Android%
-
-
-\section{CD-ROMs and Printed Proceedings}
-
-In some conferences, the papers are published on CD-ROM while only the
-abstract is published in the printed Proceedings. In this case, authors are
-invited to prepare two final versions of the paper. One, complete, to be
-published on the CD and the other, containing only the first page, with
-abstract and ``resumo'' (for papers in Portuguese).
-
-\section{Sections and Paragraphs}
-
-Section titles must be in boldface, 13pt, flush left. There should be an extra
-12 pt of space before each title. Section numbering is optional. The first
-paragraph of each section should not be indented, while the first lines of
-subsequent paragraphs should be indented by 1.27 cm.
-
-\subsection{Subsections}
-
-The subsection titles must be in boldface, 12pt, flush left.
-
-\section{Figures and Captions}\label{sec:figs}
-
-
-Figure and table captions should be centered if less than one line
-(Figure~\ref{fig:exampleFig1}), otherwise justified and indented by 0.8cm on
-both margins, as shown in Figure~\ref{fig:exampleFig2}. The caption font must
-be Helvetica, 10 point, boldface, with 6 points of space before and after each
-caption.
 
 \graphicspath{{figuras/}}
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.5\textwidth]{fig1.jpg}
-\caption{A typical figure}
-\label{fig:exampleFig1}
+\includegraphics[width=.8\textwidth]{friendtracker.jpg}
+\caption{Proteção: isolamento de aplicações e Monitor de Referência.} Extraído de \cite{enc2009}
+\label{protec}
 \end{figure}
+
+A busca por melhorias na segurança no sistema causou diversas refinamentos no sistema. Tais refinamentos ocorreram e ocorrem a cada nova versão do Android. Alguns desses refinamentos gerados até a versão v1.0r1 do System Development Kit, SDK: Compomentes públicos e privados, Componentes implicitamente abertos, Provedor de conteúdo de informações, Ganchos do sistema, API's protegidas, Leveis de controle de permissão, Intenções pendentes, Permissões de URI e Permissões de intenção em broadcast\cite{enc2009}. As definições de segurança de uma aplicação são em grande parte feitas pelo desenvolvedor da aplicação através das definições de acesso das labels. É necessário que se tenha conhecimento da maneira correta de se utilizar os refinamentos feitos no sistema, caso contrário, vulnerabilidades se tornaram presentes.
+
+\section{Revisão Sistemática}
+
+Segundo \cite{sampaio}, uma revisão sistemática representa um tipo de estudo e é uma forma de pesquisa que utiliza como fonte de dados a literatura acerca de determinado tema. Este tipo
+de investigação concede um resumo das evidências relacionadas a uma estratégia de intervenção específica, mediante a aplicação de métodos explícitos e sistematizados de busca, apreciação crítica e síntese da informação selecionada. As revisões sistemáticas são particularmente viáveis para agregar as informações de um grupo de estudos realizados separadamente sobre determinado contexto, que podem apresentar resultados conflitantes e/ou coincidentes, bem como encontrar temas que necessitam de evidência, auxiliando no interesse para investigações futuras.
+
+Com base em \cite{Brereton2007571}, os procedimentos para realizar uma revisão sistemática no contexto da engenharia de software são: Planejamento da revisão, onde ocorrer a elicitação das necessidades da revisão bem como a definição do protocolo de pesquisa; Execução da Revisão, onde que o plano da revisão previamente definido é colocado em prática. Nesta etapa é realizada a seleção dos estudos, a extração e a síntese dos resultados; e Análise dos resultados, onde que cada leitor poderá criticar ou replicar a revisão sistemática. 
+
+O objetivo primordial desse artigo de revisão sistemática é identificar quais são as principais vulnerabilidades presentes em aplicações Android que possam afetar a segurança de informações utilizadas, para posteriormente fornecer um catálogo com a relação de vulnerabilidades e técnicas de segurança que podem ser aplicas para a mitigação dessas falhas.
+
+\section{Planejamento da Revisão Sistemática}
+\label{prs}
+
+Nesta seção foi elaborado o protocolo de pesquisa que contem os objetivos, as lacunas a
+serem resolvidas, as estratégias de busca, os critérios para a seleção de artigos e como
+os dados serão extraídos das fontes obtidas. Através do protocolo definido, outros
+pesquisadores poderão replicar esta pesquisa, portanto obterão resultados semelhantes. Para auxiliar o processo de revisão, a ferramenta Zootero foi utilizada. O Zootero é uma ferramenta de pesquisa que permite o gerenciamento de referências. 
+
+As fontes de pesquisa selecionadas foram às bibliotecas digitais IEEEXPLORE, SCOPUS e ACM. As linguagens escolhidas foram o inglês e o português. Foram considerados apenas artigos decorrentes de \textit{journals} e \textit{magazines} relevantes para a execução da revisão sistemática.
+
+Para realizar a seleção dos resultados, alguns critérios de inclusão e exclusão foram estabelecidos. Os trabalhos encontrados devem possuir, no mínimo, pontuação B4 no QUALIS da CAPES e pertencer a revistas relevantes; Os trabalhos devem estar disponíveis sem custos de aquisição para alunos da Universidade de Brasília; Os trabalhos devem estar em português ou inglês; Os trabalhos devem possuir conteúdo relacionado a segurança do sistema operacional Android.
+
+
+\section{Condução da Revisão Sistemática}
+
+Nesta seção, o plano de revisão sistemática definido na seção \ref{prs} será colocado em prática. Todos os procedimentos definidos anteriormente serão estritamente seguidos. Assim o
+experimento sofrerá o mínimo possível com variáveis imprevistas que podem, de certa
+forma, modificar o resultado final da pesquisa científica.
+
+Para a definição da string de busca as seguintes palavras chaves foram utilizadas \textit{android, security, software, application, vulnerability, leak, app, malware e virus}. Apresenta-se na figura \ref{string} a string de busca definida com base nas palavras chaves. A string foi utilizada nas fontes de informações previamente selecionadas. Como a engine de busca de cada fonte pode ser diferente, pequenas mudanças na string podem ser necessárias. Porém, a semântica da string deve ser mantida. 
 
 \graphicspath{{figuras/}}
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.3\textwidth]{fig2.jpg}
-\caption{This figure is an example of a figure caption taking more than one
-  line and justified considering margins mentioned in Section~\ref{sec:figs}.}
-\label{fig:exampleFig2}
+\includegraphics[width=1\textwidth]{string.jpg}
+\caption{\textit{String} de Busca}
+\label{string}
 \end{figure}
 
-In tables, try to avoid the use of colored or shaded backgrounds, and avoid
-thick, doubled, or unnecessary framing lines. When reporting empirical data,
-do not use more decimal digits than warranted by their precision and
-reproducibility. Table caption must be placed before the table (see Table 1)
-and the font used must also be Helvetica, 10 point, boldface, with 6 points of
-space before and after each caption.
+As buscas foram realizadas nas bases estabelecidas na seção \ref{prs}. Apresenta-se na Tabela \ref{table1} os resultados obtidos com a \textit{string} de busca definida e com os critérios de seleção estabelecidos.
+
+\begin{longtable}{|p{4cm}|p{3cm}|p{5cm}|}
+\caption{Resultados obtidos com as buscas.}\\
+\hline
+\textbf{Fonte} & \textbf{Resultados} & \textbf{Resultados após filtragem} \\ \hline
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continuação da Página Anterior}} \\ \hline
+\textbf{Fonte} & \textbf{Resultados} & \textbf{Resultados após filtragem} \\ \hline
+\endhead
+\hline \multicolumn{3}{r}{\textit{Continua na Próxima Página}} \\
+\endfoot
+\hline
+\endlastfoot
+ACM & 41 & 11 \\ \hline
+IEEEXPLORE & 32 & 9 \\ \hline
+SCOPUS & 10 & 5
+\label{table1}
+\end{longtable}
+
+\section{Vulnerabilidades do Android OS}
+
+As principais falhas de segurança encontradas em aplicações Android estão relacionadas as permissões de uso de serviços do dispositivo \cite{6133256}. As permissões são claramente informadas para o usuário durante a fase de instalação, mas comumente elas passam despercebidas. Em alguns casos aplicação pode  possuir serviços de componentes não autorizados o usuário, a detecção dessa tentativa pode ser feito através do Kirin, uma aplicação Android para certificação de permissões \cite{enc2009}.
 
 \graphicspath{{figuras/}}
-\begin{table}[ht]
+\begin{figure}[ht]
 \centering
-\caption{Variables to be considered on the evaluation of interaction
-  techniques}
-\label{tab:exTable1}
-\includegraphics[width=.7\textwidth]{table.jpg}
-\end{table}
+\includegraphics[width=.7\textwidth]{internet.jpg}
+\caption{\textit{Top} 20 requisitadas por \textit{malwares}} Extraída de \cite{6234407}.
+\label{mal}
+\end{figure}
 
-\section{Images}
+\pagebreak
 
-All images and illustrations should be in black-and-white, or gray tones,
-excepting for the papers that will be electronically available (on CD-ROMs,
-internet, etc.). The image resolution on paper should be about 600 dpi for
-black-and-white images, and 150-300 dpi for grayscale images.  Do not include
-images with excessive resolution, as they may take hours to print, without any
-visible difference in the result. 
+A requisição de permissões é uma das principais maneiras para extração de dados críticos do usuário. A grande maioria dos malwares aproveita a desatenção e comportamento automático do usuário para pedir novas permissões durante o processo de atualização do aplicativo para uma nova versão. A grande quantidade de requisições para leitura e envio de SMS se deve ao fato de uma possível brecha para assinatura de serviços pagos \cite{6234407}. 
 
-\section{References}
+\graphicspath{{figuras/}}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.7\textwidth]{market.jpg}
+\caption{Variação de novas família de \textit{malwares}} Extraída de \cite{6234407}.
+\label{fam}
+\end{figure}
 
-Bibliographic references must be unambiguous and uniform.  We recommend giving
-the author names references in brackets, e.g. \cite{knuth:84},
-\cite{boulic:91}, and \cite{smith:99}.
+Outra vulnerabilidade decorrente da desatenção no processo de instalação e liberação de diversas permissões para o aplicativo é o ataque \textit{Repacking}. Nesse tipo de ataque o aplicativo original é modificado e nele são adicionados serviços que farão com que informações do usuário sejam extraídas \cite{6234407}. Após essa modificação o aplicativo alterado é disponibilizado em lojas e baixados por usuários desatentos. Esse tipo de ataque 
 
-The references must be listed using 12 point font size, with 6 points of space
-before each reference. The first line of each reference should not be
-indented, while the subsequent should be indented by 0.5 cm.
+Diferente do \textit{Repacking} o ataque \textit{Update attack} não é um \textit{malware} no primeiro momento, ele é apenas uma aplicação normal, sem possuir características que possam ser definidas como ofensivas ao usuário\cite{6234407}. No entanto esse ataque faz com que após a atualização do aplicativo, podendo ser visível ou não para o usuário, ele se torne um \textit{malware} com um conjunto de serviços que extraiam informações.
+
+Já o ataque \textit{Drive-by Download} não vai possuir nenhuma característica de \textit{malware} em momento algum do seu ciclo de vida. Ele irá redirecionar o usuário para uma página maliciosa, possivelmente uma falsa loja de aplicativos, que oferecerá soluções para algum tipo de problema analisado pelo aplicativo anterior, caso o usuário instale essa nova aplicação o sistema se tornará vulnerável a extração de dados\cite{6234407}.
+
+Uma das vulnerabilidades encontradas pode explorar a extração de informações pessoais do usuário através da utilização da câmera e microfone. Esse tipo de ataque tem como objetivo a obtenção de informações privadas do usuário. Através da utilização da câmera e microfone o atacante pode obter informações sem que o usuário perceba qualquer rastro de invasão ao seus dispositivo. 
+
+Alguns tipos de ataque baseados  em video utilizam como brecha para coletar dados o período em que o usuário digita textos, possivelmente senhas, no teclado. Essa análise pode ser feita através da captura da movimentação dos olhos\cite{wu2014}. Tal tipo de ataque ocorre quando um usuário instala um aplicativo que parece ser inofensivo, mas em um momento de desatenção durante a instalação ele não percebe que uma requisição de uso de câmera e, ou microfone. Após essa instalação o aplicativo rodará um service em background que ira capturar fotos e gravar áudios sem que seja notado.
+
+Outra maneira para se obter esse tipo de informação é através da captura da tela do usuário durante a digitação de textos. O malware pode ser configurado para que se inicie no momento em que um texto é digitado, isso sem que o usuário receba qualquer notificação \cite{6122840}.
+
+\section{Técnicas de Segurança}
+
+Atualmente, existem softwares destinados apenas a detecção de malwares, entretanto, eles não são capazes de identificar completamente os softwares maliciosos. Na melhor das hipóteses apenas 86 \% deles são detectados\cite{6234407}. Ações preventivas são as medidas mais simples e baratas de serem executadas. Algumas destas são \cite{6133256}:
+
+\begin{itemize}
+\item Baixar todas as aplicações de fontes seguras. Utilizar serviços oferecidos ou avaliados pela Google;
+\item Evitar baixar qualquer aplicativo de uma fonte não certificada;
+\item Antes de efetuar o download de um aplicativo, veja dados de avaliação do autor. Esta informação é disponibilizada pela comunidade que realiza o \textit{download} da aplicação;
+\item Durante a instalação de um aplicativo, sempre verifique as requisições que estão sendo realizadas;
+\item Desligue o WIFI, Bluetooth e outros meios de comunicação caso não estejam em uso. Isto pode evitar o envio de dados pessoais para lugares não seguros;
+\item Não se conecte a redes abertas. Isto pode ser uma armadilha para obter acesso aos dados do dispositivo móvel;
+\item Sempre mantenha as aplicações atualizadas. Esta prática é importante, pois os fornecedores do aplicativo sempre efetuam correções e melhorias que podem aumentar a segurança das informações;
+\item Não permita que informações confidenciais sejam salvas em \textit{cache}. A memória \textit{cache} pode ser acessada facilmente por usuários não autorizados;
+\item Não clique em \textit{links} suspeitos, na dúvida, sempre digite diretamente a URL do site;
+\item Sempre monitore o consumo de bateria, SMS e rede do seu celular, caso ele apresente um comportamento incomum, verifique os últimos aplicativos instalados, é possível que o dispositivo esteja sob ataque;
+\item Utilize um aplicativo seguro para controle remoto do dispositivo, esse aplicativo deve ser utilizado para apagar todos os dados caso o dispositivo tenha sido roubado ou perdido;
+\end{itemize}
+
+Trazer o usuário do dispositivo para o ecossistema de segurança pode ser a chave para a redução drástica na quantidade de ataques bem sucedidos de malwares \cite{6133256}.
+
+Fora do escopo da prevenção, existem as técnicas para a detecção de malwares, que aproveitam das vulnerabilidades existentes. As principais técnicas para esse tipo de ação são: Análise estática, Análise dinâmica, Análise de permissão de aplicação, Detecção baseada em nuvem e Monitoramento do consumo da bateria. A análise estática em aplicações Android consistem em descompilar a aplicação para se obter o código fonte, análiser o código fonte através de alguma ferramenta e  detectar possíveis anomalias nas restrições de acesso. A análise dinâmica envolve simular e isolar o ambiente Android no qual a aplicação será executada. Através dessa simulação e isolamento é possível identificar o seu real comportamento. O controle de permissões de aplicação é a chave principal no controle de acesso aos dados do usuário \cite{6133256}. Esse tipo de análise só surte efeitos positivos caso seja executada em paralelo com alguma outra técnica, por exemplo, análise estática. As duas últimas técnicas recaem sobre as características de hardware de dispositivos móveis, capacidade de processamento e  consumo de energia. A detecção baseada em nuvem transfere a simulação e análise de aplicações para emuladores presentes em servidores. A análise através do consumo de bateria tem como objetivo verificar a variação do gasto energético de aplicações suspeitas e confiáveis, caso haja diferenças exorbitantes é possível que uma delas seja maliciosa.
+
+\section{Considerações Finais}
+
+O sistema mais utilizado em \textit{smartphones}, Android, também é um dos maiores alvos de tentativas de quebra de segurança. As maneiras utilizadas para se tentar obter informações dos usuários, que já usam os dispositivos para diversos tipos de transações, desde acesso a redes sociais até pagamento de contas bancárias, faz com que os esforços aplicados para a manutenção do sigilo desses dados sejam maiores. Foi relatado diversos tipos de vulnerabilidades presentes no sistema, mas ainda assim o usuário é o maior responsável por manter em segurança o conteúdo presente em seu \textit{smartphone}. A grande maioria das falhas relatadas só são criadas através da liberação desatenta de permissões, sendo esse controle feito pelo usuário.
+
+Desenvolvedores também podem auxiliar no processo para proteção dos dados, porém é necessário conhecimento técnico aprofundado. Técnicas de segurança normalmente não são triviais, mas as mais básicas como restrição de acesso de serviços da aplicação podem ser executadas de uma maneira rápida e garantem proteção dos dados utilizados, através do bloqueio do seu conteúdo.
+
+Através das boas práticas identificadas, é possível reduzir de forma considerável a proliferação de \textit{malwares}. Apesar das boas práticas serem válidas, a evolução dos \textit{malwares} é constante, sendo assim é necessário validar e identificar novas técnicas de segurança para evitar novos tipos de ameaças.
 
 \bibliographystyle{sbc}
 \bibliography{sbc-template}
